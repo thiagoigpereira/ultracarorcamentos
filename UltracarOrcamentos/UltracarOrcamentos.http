@@ -1,0 +1,6 @@
+@UltracarOrcamentos_HostAddress = http://localhost:5261
+
+GET {{UltracarOrcamentos_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
