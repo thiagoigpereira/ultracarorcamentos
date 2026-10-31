@@ -20,6 +20,7 @@ public class AppDbContext : DbContext
     public DbSet<Peca> Pecas => Set<Peca>();
     public DbSet<PecaCompatibilidade> PecaCompatibilidades => Set<PecaCompatibilidade>();
     public DbSet<IdempotencyKey> IdempotencyKeys => Set<IdempotencyKey>();
+    public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

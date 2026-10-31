@@ -15,6 +15,22 @@ public class DiagnosticoConfiguration : IEntityTypeConfiguration<Diagnostico>
         builder.Property(d => d.Descricao).HasMaxLength(250).IsRequired();
         builder.Property(d => d.Sistema).HasMaxLength(100).IsRequired();
     }
+
+public class OutboxMessageConfiguration : IEntityTypeConfiguration<OutboxMessage>
+{
+    public void Configure(EntityTypeBuilder<OutboxMessage> builder)
+    {
+        builder.ToTable("OutboxMessages");
+        builder.HasKey(message => message.Id);
+        builder.Property(message => message.Type).HasMaxLength(200).IsRequired();
+        builder.Property(message => message.Payload).IsRequired();
+        builder.Property(message => message.Error).HasMaxLength(2000);
+        builder.HasIndex(message => new { message.ProcessedOnUtc, message.LeaseExpiresOnUtc, message.OccurredOnUtc });
+        builder.HasIndex(message => message.DeduplicationKey)
+            .IsUnique()
+            .HasFilter("\"DeduplicationKey\" IS NOT NULL");
+    }
+}
 }
 
 public class DiagnosticoServicoConfiguration : IEntityTypeConfiguration<DiagnosticoServico>
@@ -76,5 +92,8 @@ public class OrcamentoHistoricoConfiguration : IEntityTypeConfiguration<Orcament
         builder.Property(h => h.Canal).HasMaxLength(50).IsRequired();
         builder.Property(h => h.De).HasConversion<string>().HasMaxLength(30);
         builder.Property(h => h.Para).HasConversion<string>().HasMaxLength(30).IsRequired();
+        builder.Property(h => h.UsuarioId)
+            .HasColumnType("text")
+            .IsRequired(false);
     }
 }

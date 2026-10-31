@@ -2,9 +2,8 @@
 
 namespace Domain.Entities;
 
-public class Marca
+public class Marca : Entity
 {
-    public Guid Id { get; private set; }
     public string Nome { get; private set; } = string.Empty;
 
     private readonly List<Modelo> _modelos = new();
@@ -14,7 +13,6 @@ public class Marca
 
     public Marca(string nome)
     {
-        Id = Guid.NewGuid();
         Nome = nome;
     }
 }

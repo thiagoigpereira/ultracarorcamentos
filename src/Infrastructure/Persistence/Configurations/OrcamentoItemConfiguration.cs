@@ -16,6 +16,9 @@ public class OrcamentoItemConfiguration : IEntityTypeConfiguration<OrcamentoItem
             .HasMaxLength(20)
             .IsRequired();
 
+        builder.Property(i => i.PecaPendente)
+            .IsRequired();
+
         builder.Property(i => i.Descricao)
             .HasMaxLength(200)
             .IsRequired();

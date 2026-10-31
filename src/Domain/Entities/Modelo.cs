@@ -1,8 +1,7 @@
 ﻿namespace Domain.Entities;
 
-public class Modelo
+public class Modelo : Entity
 {
-    public Guid Id { get; private set; }
     public string Nome { get; private set; } = string.Empty;
     public Guid MarcaId { get; private set; }
     public Marca Marca { get; private set; } = null!;
@@ -11,7 +10,6 @@ public class Modelo
 
     public Modelo(string nome, Guid marcaId)
     {
-        Id = Guid.NewGuid();
         Nome = nome;
         MarcaId = marcaId;
     }

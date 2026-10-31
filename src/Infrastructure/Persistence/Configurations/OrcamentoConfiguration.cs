@@ -23,14 +23,24 @@ public class OrcamentoConfiguration : IEntityTypeConfiguration<Orcamento>
 
         builder.Property(o => o.ValorAprovado)
             .HasPrecision(18, 2)
+            .IsRequired(false);
+
+        builder.Property(o => o.Desconto)
+            .HasPrecision(18, 2)
             .IsRequired();
+
+        builder.Property(o => o.MotivoRecusa)
+            .HasMaxLength(1000);
+
+        builder.Property(o => o.EnviadoPor)
+            .HasColumnType("text");
 
         builder.Property(o => o.TokenPublico)
             .HasMaxLength(64);
 
-        
         builder.Property(o => o.RowVersion)
-            .IsRowVersion();
+            .IsConcurrencyToken()
+            .ValueGeneratedNever();
 
         builder.HasIndex(o => new { o.OficinaId, o.OrdemServicoId })
             .IsUnique()

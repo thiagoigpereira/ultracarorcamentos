@@ -1,8 +1,7 @@
 ﻿namespace Domain.Entities;
 
-public class Diagnostico
+public class Diagnostico : Entity
 {
-    public Guid Id { get; private set; }
     public string Codigo { get; private set; } = string.Empty;
     public string Descricao { get; private set; } = string.Empty;
     public string Sistema { get; private set; } = string.Empty;
@@ -14,9 +13,14 @@ public class Diagnostico
 
     public Diagnostico(string codigo, string descricao, string sistema)
     {
-        Id = Guid.NewGuid();
         Codigo = codigo;
         Descricao = descricao;
         Sistema = sistema;
+    }
+
+    public Diagnostico(Guid id, string codigo, string descricao, string sistema)
+        : this(codigo, descricao, sistema)
+    {
+        Id = id;
     }
 }

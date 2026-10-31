@@ -6,10 +6,10 @@ public class ServicoTipoPeca
     public Servico Servico { get; private set; } = null!;
 
     public Guid TipoPecaId { get; private set; }
-    public string TipoPecaNome { get; private set; } = string.Empty; 
+    public string TipoPecaNome { get; private set; } = string.Empty;
     public int QuantidadePadrao { get; private set; }
 
-    private ServicoTipoPeca() { } 
+    private ServicoTipoPeca() { }
 
     public ServicoTipoPeca(Guid servicoId, Guid tipoPecaId, string tipoPecaNome, int quantidadePadrao)
     {

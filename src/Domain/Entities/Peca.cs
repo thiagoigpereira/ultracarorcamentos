@@ -1,8 +1,7 @@
 ﻿namespace Domain.Entities;
 
-public class Peca
+public class Peca : Entity
 {
-    public Guid Id { get; private set; }
     public string CodigoFabricante { get; private set; } = string.Empty;
     public string Descricao { get; private set; } = string.Empty;
     public Guid TipoPecaId { get; private set; }
@@ -16,7 +15,6 @@ public class Peca
 
     public Peca(string codigoFabricante, string descricao, Guid tipoPecaId, decimal preco, bool preferencial)
     {
-        Id = Guid.NewGuid();
         CodigoFabricante = codigoFabricante;
         Descricao = descricao;
         TipoPecaId = tipoPecaId;
